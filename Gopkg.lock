@@ -30,4 +30,12 @@
   packages = ["."]
   revision = "fa62c19b7ae87da370242054c8beb11af31d327f"
 
-[[project
+[[projects]]
+  branch = "master"
+  name = "github.com/martini-contrib/render"
+  packages = ["."]
+  revision = "ec18f8345a1181146728238980606fb1d6f40e8c"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/oxtoac
