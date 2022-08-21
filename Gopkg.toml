@@ -29,4 +29,14 @@
   branch = "master"
   name = "github.com/barryz/cron"
 
-[[const
+[[constraint]]
+  branch = "master"
+  name = "github.com/braintree/manners"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/martini-contrib/auth"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/m
