@@ -14,4 +14,8 @@ import (
 func logRotateRun() {
 	log.Println("[INFO] start to rotate rabbitmq log file ......")
 	suffix := fmt.Sprintf(".%s", utils.GetYesterdayDate())
-	logRotateComman
+	logRotateCommand := exec.Command("rabbitmqctl", "rotate_logs", suffix)
+	output, err := logRotateCommand.CombinedOutput()
+	if err != nil {
+		log.Printf("[ERROR]: rotate rabbitmq log failed due to %s", err.Error())
+		ret
