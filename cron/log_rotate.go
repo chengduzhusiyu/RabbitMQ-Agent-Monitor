@@ -27,4 +27,6 @@ func logRotateRun() {
 // Start start the cron tab
 func Start() {
 	logrotateCron := cron.New()
-	logrotateCron.AddFuncCC(g.Config().Cron.LogRotate, f
+	logrotateCron.AddFuncCC(g.Config().Cron.LogRotate, func() { logRotateRun() }, 1)
+	logrotateCron.Start()
+}
