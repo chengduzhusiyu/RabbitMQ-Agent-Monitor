@@ -18,4 +18,13 @@ func logRotateRun() {
 	output, err := logRotateCommand.CombinedOutput()
 	if err != nil {
 		log.Printf("[ERROR]: rotate rabbitmq log failed due to %s", err.Error())
-		ret
+		return
+	}
+	log.Printf("[INFO] rotate rabbitmq log success, %s", string(output))
+	return
+}
+
+// Start start the cron tab
+func Start() {
+	logrotateCron := cron.New()
+	logrotateCron.AddFuncCC(g.Config().Cron.LogRotate, f
