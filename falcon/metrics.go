@@ -23,4 +23,10 @@ const (
 
 // MetaData meta data
 type MetaData struct {
-	Endpoint    string      `
+	Endpoint    string      `json:"endpoint"`
+	Metric      string      `json:"metric"`
+	Value       interface{} `json:"value"`
+	CounterType string      `json:"counterType"`
+	Tags        string      `json:"tags"`
+	Timestamp   int64       `json:"timestamp"`
+	Step        int
