@@ -12,4 +12,15 @@ import (
 )
 
 var (
-	st
+	statsDB = g.NewStatsDB()
+)
+
+const (
+	overviewPrefix = "rabbitmq.overview."
+	queuePrefix    = "rabbitmq.queue."
+	exchangePrefix = "rabbitmq.exchange."
+)
+
+// MetaData meta data
+type MetaData struct {
+	Endpoint    string      `
