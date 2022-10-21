@@ -29,4 +29,11 @@ type MetaData struct {
 	CounterType string      `json:"counterType"`
 	Tags        string      `json:"tags"`
 	Timestamp   int64       `json:"timestamp"`
-	Step        int
+	Step        int64       `json:"step"`
+}
+
+// NewMetric create an new metric
+func NewMetric(name string, value interface{}, tags string) *MetaData {
+	host := g.GetHost()
+	return &MetaData{
+		Metric:      nam
