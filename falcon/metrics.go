@@ -36,4 +36,14 @@ type MetaData struct {
 func NewMetric(name string, value interface{}, tags string) *MetaData {
 	host := g.GetHost()
 	return &MetaData{
-		Metric:      nam
+		Metric:      name,
+		Endpoint:    host,
+		CounterType: fmt.Sprintf("GAUGE"),
+		Tags:        tags,
+		Timestamp:   time.Now().Unix(),
+		Step:        g.Config().Interval,
+		Value:       value,
+	}
+}
+
+func (m *MetaData) S
