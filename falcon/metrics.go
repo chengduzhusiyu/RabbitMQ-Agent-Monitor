@@ -46,4 +46,10 @@ func NewMetric(name string, value interface{}, tags string) *MetaData {
 	}
 }
 
-func (m *MetaData) S
+func (m *MetaData) String() string {
+	s := fmt.Sprintf("MetaData Metric:%s Endpoint:%s Value:%v CounterType:%s Tags:%s Timestamp:%d Step:%d",
+		m.Metric, m.Endpoint, m.Value, m.CounterType, m.Tags, m.Timestamp, m.Step)
+	return s
+}
+
+// SetVa
