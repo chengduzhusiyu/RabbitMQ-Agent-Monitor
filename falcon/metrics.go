@@ -52,4 +52,15 @@ func (m *MetaData) String() string {
 	return s
 }
 
-// SetVa
+// SetValue value setter
+func (m *MetaData) SetValue(v interface{}) {
+	m.Value = v
+}
+
+func trimFloat(s float64) float64 {
+	if s, err := strconv.ParseFloat(fmt.Sprintf("%.3f", s), 64); err == nil {
+		return s
+	}
+	return s
+}
+
