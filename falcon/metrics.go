@@ -64,3 +64,15 @@ func trimFloat(s float64) float64 {
 	return s
 }
 
+func calcPercentage(l, t int64) (pct float64) {
+	if t == 0 {
+		return
+	}
+	pct = float64(l) / float64(t) * 100.00
+	pct = trimFloat(pct)
+	return
+}
+
+func qStats(s string) int64 {
+	var aliveQueue = g.Config().Qrunning
+	for _, i :
