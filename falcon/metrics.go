@@ -75,4 +75,16 @@ func calcPercentage(l, t int64) (pct float64) {
 
 func qStats(s string) int64 {
 	var aliveQueue = g.Config().Qrunning
-	for _, i :
+	for _, i := range aliveQueue {
+		if strings.Contains(strings.ToLower(s), i) {
+			return 1
+		}
+	}
+	return 0
+}
+
+func isAliveness(s string) int64 {
+	switch s {
+	case "ok":
+		return 1
+	default
