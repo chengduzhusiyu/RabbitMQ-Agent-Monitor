@@ -87,4 +87,20 @@ func isAliveness(s string) int64 {
 	switch s {
 	case "ok":
 		return 1
-	default
+	default:
+		return 0
+	}
+}
+
+func partitions(s []string) int64 {
+	switch len(s) {
+	case 0:
+		return 1
+	default:
+		return 0
+	}
+}
+
+func consumerUtil(c interface{}) float64 {
+	if vv, ok := c.(float64); ok {
+		return trimFloat(
