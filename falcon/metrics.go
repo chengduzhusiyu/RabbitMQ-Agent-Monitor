@@ -103,4 +103,17 @@ func partitions(s []string) int64 {
 
 func consumerUtil(c interface{}) float64 {
 	if vv, ok := c.(float64); ok {
-		return trimFloat(
+		return trimFloat(vv * 100.00)
+	} else if _, ok := c.(bool); ok {
+		return 0.0
+	} else if _, ok := c.(string); ok {
+		return 0.0
+	}
+	return 0.0
+}
+
+func updateCurrentStatsDB(db string) {
+	statsDB.SetCurrentLocate(db)
+}
+
+// GetCurren
