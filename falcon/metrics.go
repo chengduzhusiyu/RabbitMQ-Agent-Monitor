@@ -116,4 +116,13 @@ func updateCurrentStatsDB(db string) {
 	statsDB.SetCurrentLocate(db)
 }
 
-// GetCurren
+// GetCurrentStatsDB get current stats management database
+func GetCurrentStatsDB() *g.StatsDB {
+	return statsDB
+}
+
+// handleJudge
+func handleJudge() (data []*MetaData) {
+	data = make([]*MetaData, 0)
+	nd, err := funcs.GetNode()
+	if er
