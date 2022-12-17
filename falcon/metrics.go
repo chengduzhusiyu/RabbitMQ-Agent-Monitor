@@ -125,4 +125,10 @@ func GetCurrentStatsDB() *g.StatsDB {
 func handleJudge() (data []*MetaData) {
 	data = make([]*MetaData, 0)
 	nd, err := funcs.GetNode()
-	if er
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	data = append(data, NewMetric(overviewPrefix+"ioReadawait", nd.Rawait, ""))    // io_read_avg_wait_time
+	data = append(data, NewMetric(
