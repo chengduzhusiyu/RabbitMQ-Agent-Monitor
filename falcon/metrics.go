@@ -133,4 +133,6 @@ func handleJudge() (data []*MetaData) {
 	data = append(data, NewMetric(overviewPrefix+"ioReadawait", nd.Rawait, ""))    // io_read_avg_wait_time
 	data = append(data, NewMetric(overviewPrefix+"ioWriteawait", nd.Wawait, ""))   // io_write_avg_wait_time
 	data = append(data, NewMetric(overviewPrefix+"ioSyncawait", nd.Syncawait, "")) // io_sync_avg_wait_time
-	data = append(data, NewMetri
+	data = append(data, NewMetric(overviewPrefix+"memConnreader", nd.ConnectionReaders, ""))
+	data = append(data, NewMetric(overviewPrefix+"memConnwriter", nd.ConnectionWriters, ""))
+	data = append(data, NewMetric(overviewPrefix+"memConnchannels
