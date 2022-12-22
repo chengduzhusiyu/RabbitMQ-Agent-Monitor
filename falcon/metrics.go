@@ -131,4 +131,6 @@ func handleJudge() (data []*MetaData) {
 	}
 
 	data = append(data, NewMetric(overviewPrefix+"ioReadawait", nd.Rawait, ""))    // io_read_avg_wait_time
-	data = append(data, NewMetric(
+	data = append(data, NewMetric(overviewPrefix+"ioWriteawait", nd.Wawait, ""))   // io_write_avg_wait_time
+	data = append(data, NewMetric(overviewPrefix+"ioSyncawait", nd.Syncawait, "")) // io_sync_avg_wait_time
+	data = append(data, NewMetri
