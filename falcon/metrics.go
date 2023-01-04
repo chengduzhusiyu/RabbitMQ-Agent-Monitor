@@ -135,4 +135,7 @@ func handleJudge() (data []*MetaData) {
 	data = append(data, NewMetric(overviewPrefix+"ioSyncawait", nd.Syncawait, "")) // io_sync_avg_wait_time
 	data = append(data, NewMetric(overviewPrefix+"memConnreader", nd.ConnectionReaders, ""))
 	data = append(data, NewMetric(overviewPrefix+"memConnwriter", nd.ConnectionWriters, ""))
-	data = append(data, NewMetric(overviewPrefix+"memConnchannels
+	data = append(data, NewMetric(overviewPrefix+"memConnchannels", nd.ConnectionChannels, ""))
+	data = append(data, NewMetric(overviewPrefix+"memMnesia", nd.Mnesia, ""))
+	data = append(data, NewMetric(overviewPrefix+"memMgmtdb", nd.MgmtDB, ""))
+	data = append(data, NewMetric(overvie
