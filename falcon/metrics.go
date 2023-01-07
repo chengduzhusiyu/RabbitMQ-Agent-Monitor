@@ -143,4 +143,6 @@ func handleJudge() (data []*MetaData) {
 	data = append(data, NewMetric(overviewPrefix+"memBinary", nd.Binary, ""))
 	data = append(data, NewMetric(overviewPrefix+"memAlarm", nd.MemAlarmStatus(), ""))
 	data = append(data, NewMetric(overviewPrefix+"diskAlarm", nd.DiskAlarmStatus(), ""))
-	data = append(data, NewMetric(overviewPrefix+"fdUsedPct",
+	data = append(data, NewMetric(overviewPrefix+"fdUsedPct", calcPercentage(nd.FdUsed, nd.FdTotal), ""))
+	data = append(data, NewMetric(overviewPrefix+"memUsedPct", calcPercentage(nd.MemUsed, nd.MemLimit), ""))
+	data = append(data, NewMetric(overviewPrefix+"socketUsedPct", 
