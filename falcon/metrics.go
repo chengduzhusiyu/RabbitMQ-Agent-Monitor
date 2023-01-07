@@ -141,4 +141,6 @@ func handleJudge() (data []*MetaData) {
 	data = append(data, NewMetric(overviewPrefix+"memPlugins", nd.Plugins, ""))
 	data = append(data, NewMetric(overviewPrefix+"memMsgidx", nd.MsgIndex, ""))
 	data = append(data, NewMetric(overviewPrefix+"memBinary", nd.Binary, ""))
-	data = append
+	data = append(data, NewMetric(overviewPrefix+"memAlarm", nd.MemAlarmStatus(), ""))
+	data = append(data, NewMetric(overviewPrefix+"diskAlarm", nd.DiskAlarmStatus(), ""))
+	data = append(data, NewMetric(overviewPrefix+"fdUsedPct",
