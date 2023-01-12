@@ -147,4 +147,7 @@ func handleJudge() (data []*MetaData) {
 	data = append(data, NewMetric(overviewPrefix+"memUsedPct", calcPercentage(nd.MemUsed, nd.MemLimit), ""))
 	data = append(data, NewMetric(overviewPrefix+"socketUsedPct", calcPercentage(nd.SocketsUsed, nd.SocketsTotal), ""))
 	data = append(data, NewMetric(overviewPrefix+"erlProcsUsedPct", calcPercentage(nd.ErlProcUsed, nd.ErlProcTotal), "")) //消费生产比
-	data = appe
+	data = append(data, NewMetric(overviewPrefix+"runQueue", nd.RunQueues, ""))
+	data = append(data, NewMetric(overviewPrefix+"isPartition", partitions(nd.Partitions), "")) // 是否发生网络分区
+
+	currentNode := "r
