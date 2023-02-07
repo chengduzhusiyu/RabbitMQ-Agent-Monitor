@@ -150,4 +150,14 @@ func handleJudge() (data []*MetaData) {
 	data = append(data, NewMetric(overviewPrefix+"runQueue", nd.RunQueues, ""))
 	data = append(data, NewMetric(overviewPrefix+"isPartition", partitions(nd.Partitions), "")) // 是否发生网络分区
 
-	currentNode := "r
+	currentNode := "rabbit@" + g.GetHost()
+	ov, err := funcs.GetOverview()
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	updateCurrentStatsDB(ov.StatisticsDbNode)
+
+	// RabbitMQ Version Compatibility: (<= 3.6.x)
+	if ov.StatisticsDbNode == curr
