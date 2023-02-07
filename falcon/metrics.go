@@ -160,4 +160,13 @@ func handleJudge() (data []*MetaData) {
 	updateCurrentStatsDB(ov.StatisticsDbNode)
 
 	// RabbitMQ Version Compatibility: (<= 3.6.x)
-	if ov.StatisticsDbNode == curr
+	if ov.StatisticsDbNode == currentNode || len(ov.StatisticsDbNode) == 0 {
+		channelCost, err := funcs.GetChannelCost()
+		if err != nil {
+			log.Println(err.Error())
+			return
+		}
+
+		aliveness, err := funcs.GetAlive()
+		if err != nil {
+			log.Printf("get aliveness api failed 
