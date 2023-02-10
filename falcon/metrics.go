@@ -169,4 +169,16 @@ func handleJudge() (data []*MetaData) {
 
 		aliveness, err := funcs.GetAlive()
 		if err != nil {
-			log.Printf("get aliveness api failed 
+			log.Printf("get aliveness api failed due to %s", err.Error())
+			return
+		}
+
+		queues, err := funcs.GetQueues()
+		if err != nil {
+			log.Printf("get queue api failed due to %s", err.Error())
+			return
+		}
+
+		exchs, err := funcs.GetExchanges()
+		if err != nil {
+			log.Printf("get e
