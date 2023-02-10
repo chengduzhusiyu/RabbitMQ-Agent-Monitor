@@ -181,4 +181,9 @@ func handleJudge() (data []*MetaData) {
 
 		exchs, err := funcs.GetExchanges()
 		if err != nil {
-			log.Printf("get e
+			log.Printf("get exchange api failed due to %s", err.Error())
+			return
+		}
+
+		data = append(data, NewMetric(overviewPrefix+"queuesTotal", ov.Queues, "")) // 队列总数
+		data = append(data, NewMetric(overviewPrefix+"channel
