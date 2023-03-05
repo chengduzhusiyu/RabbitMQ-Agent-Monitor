@@ -194,4 +194,6 @@ func handleJudge() (data []*MetaData) {
 		data = append(data, NewMetric(overviewPrefix+"msgsReadyTotal", ov.MsgsReadyTotal, ""))
 		data = append(data, NewMetric(overviewPrefix+"msgsUnackTotal", ov.MsgsUnackedTotal, ""))
 		data = append(data, NewMetric(overviewPrefix+"deliverTotal", ov.DeliverGet, ""))
-		data 
+		data = append(data, NewMetric(overviewPrefix+"publishTotal", ov.Publish, ""))
+		data = append(data, NewMetric(overviewPrefix+"redeliverTotal", ov.Redeliver, ""))
+		data = append(data, NewMetric(overviewPrefix+"statsDbEvent", 
