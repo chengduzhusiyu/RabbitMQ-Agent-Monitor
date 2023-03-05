@@ -186,4 +186,7 @@ func handleJudge() (data []*MetaData) {
 		}
 
 		data = append(data, NewMetric(overviewPrefix+"queuesTotal", ov.Queues, "")) // 队列总数
-		data = append(data, NewMetric(overviewPrefix+"channel
+		data = append(data, NewMetric(overviewPrefix+"channelsTotal", ov.Channels, ""))
+		data = append(data, NewMetric(overviewPrefix+"connectionsTotal", ov.Connections, ""))
+		data = append(data, NewMetric(overviewPrefix+"consumersTotal", ov.Consumers, ""))
+		d
