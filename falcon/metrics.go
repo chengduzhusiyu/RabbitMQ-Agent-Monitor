@@ -198,4 +198,6 @@ func handleJudge() (data []*MetaData) {
 		data = append(data, NewMetric(overviewPrefix+"redeliverTotal", ov.Redeliver, ""))
 		data = append(data, NewMetric(overviewPrefix+"statsDbEvent", ov.StatsDbEvents, "")) //统计数据库事件数
 		data = append(data, NewMetric(overviewPrefix+"deliverRate", ov.DeliverGetRates.Rate, ""))
-		data = append(data, NewMetric(overviewPrefix+"publishRate", ov.PublishRa
+		data = append(data, NewMetric(overviewPrefix+"publishRate", ov.PublishRates.Rate, ""))
+		data = append(data, NewMetric(overviewPrefix+"confirmRate", ov.ConfirmRates.Rate, ""))
+		data = append(data, NewMetric(overviewPrefix+"redeliverRate", ov.Redeliver
