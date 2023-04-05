@@ -200,4 +200,7 @@ func handleJudge() (data []*MetaData) {
 		data = append(data, NewMetric(overviewPrefix+"deliverRate", ov.DeliverGetRates.Rate, ""))
 		data = append(data, NewMetric(overviewPrefix+"publishRate", ov.PublishRates.Rate, ""))
 		data = append(data, NewMetric(overviewPrefix+"confirmRate", ov.ConfirmRates.Rate, ""))
-		data = append(data, NewMetric(overviewPrefix+"redeliverRate", ov.Redeliver
+		data = append(data, NewMetric(overviewPrefix+"redeliverRate", ov.RedeliverRates.Rate, ""))
+		data = append(data, NewMetric(overviewPrefix+"ackRate", ov.AckRates.Rate, ""))
+		data = append(data, NewMetric(overviewPrefix+"getChannelCost", channelCost, "")) // 获取channel耗时
+		data = append(data, NewMetric(overv
