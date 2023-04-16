@@ -209,4 +209,7 @@ func handleJudge() (data []*MetaData) {
 
 		for _, q := range queues {
 			tags := fmt.Sprintf("name=%s,vhost=%s", q.Name, q.Vhost)
-			data = append(data, NewMetric(queuePrefix+"messages", q.Messages, t
+			data = append(data, NewMetric(queuePrefix+"messages", q.Messages, tags))
+			data = append(data, NewMetric(queuePrefix+"messages_ready", q.MessagesReady, tags))
+			data = append(data, NewMetric(queuePrefix+"messages_unacked", q.MessagesUnacked, tags))
+			data = append(dat
