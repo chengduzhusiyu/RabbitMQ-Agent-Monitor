@@ -205,4 +205,8 @@ func handleJudge() (data []*MetaData) {
 		data = append(data, NewMetric(overviewPrefix+"getChannelCost", channelCost, "")) // 获取channel耗时
 		data = append(data, NewMetric(overviewPrefix+"dpRatio", calcPercentage(int64(ov.DeliverGetRates.Rate), int64(ov.PublishRates.Rate)), ""))
 		data = append(data, NewMetric(overviewPrefix+"isAlive", isAliveness(aliveness.Status), "")) // 读写判断
-		data = append(d
+		data = append(data, NewMetric(overviewPrefix+"isUp", 1, ""))
+
+		for _, q := range queues {
+			tags := fmt.Sprintf("name=%s,vhost=%s", q.Name, q.Vhost)
+			data = append(data, NewMetric(queuePrefix+"messages", q.Messages, t
