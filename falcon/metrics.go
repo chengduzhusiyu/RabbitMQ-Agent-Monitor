@@ -215,4 +215,6 @@ func handleJudge() (data []*MetaData) {
 			data = append(data, NewMetric(queuePrefix+"deliver_get", q.DeliverGet.Rate, tags))
 			data = append(data, NewMetric(queuePrefix+"publish", q.Publish.Rate, tags))
 			data = append(data, NewMetric(queuePrefix+"redeliver", q.Redeliver.Rate, tags))
-			data = ap
+			data = append(data, NewMetric(queuePrefix+"ack", q.Ack.Rate, tags))
+			data = append(data, NewMetric(queuePrefix+"memory", q.Memory, tags))
+			data = append(data, NewMetric(queuePrefix+"consumers", q.Consumers, tags
