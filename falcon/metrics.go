@@ -220,4 +220,9 @@ func handleJudge() (data []*MetaData) {
 			data = append(data, NewMetric(queuePrefix+"consumers", q.Consumers, tags))
 			data = append(data, NewMetric(queuePrefix+"consumer_utilisation", consumerUtil(q.ConsumerUtil), tags))
 			data = append(data, NewMetric(queuePrefix+"status", qStats(q.Status), tags))
-			data = append(data
+			data = append(data, NewMetric(queuePrefix+"dpratio", calcPercentage(int64(q.DeliverGet.Rate), int64(q.Publish.Rate)), tags))
+		}
+
+		for _, e := range exchs {
+			tags := fmt.Sprintf("name=%s,vhost=%s", e.Name, e.VHost)
+			data =
