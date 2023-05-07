@@ -225,4 +225,6 @@ func handleJudge() (data []*MetaData) {
 
 		for _, e := range exchs {
 			tags := fmt.Sprintf("name=%s,vhost=%s", e.Name, e.VHost)
-			data =
+			data = append(data, NewMetric(exchangePrefix+"publish_in", e.MsgStats.PublishInRate.Rate, tags))
+			data = append(data, NewMetric(exchangePrefix+"publish_out", e.MsgStats.PublishOutRate.Rate, tags))
+			data = append(data, NewMetric(exchan
