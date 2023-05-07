@@ -227,4 +227,13 @@ func handleJudge() (data []*MetaData) {
 			tags := fmt.Sprintf("name=%s,vhost=%s", e.Name, e.VHost)
 			data = append(data, NewMetric(exchangePrefix+"publish_in", e.MsgStats.PublishInRate.Rate, tags))
 			data = append(data, NewMetric(exchangePrefix+"publish_out", e.MsgStats.PublishOutRate.Rate, tags))
-			data = append(data, NewMetric(exchan
+			data = append(data, NewMetric(exchangePrefix+"confirm", e.MsgStats.ConfirmRate.Rate, tags))
+		}
+	}
+
+	return
+}
+
+func handleSickRabbit() (data []*MetaData) {
+	data = make([]*MetaData, 0)
+	data = append(data, NewMetric(overviewP
