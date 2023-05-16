@@ -236,4 +236,15 @@ func handleJudge() (data []*MetaData) {
 
 func handleSickRabbit() (data []*MetaData) {
 	data = make([]*MetaData, 0)
-	data = append(data, NewMetric(overviewP
+	data = append(data, NewMetric(overviewPrefix+"isUp", 0, ""))
+	return
+}
+
+// Collector collect metrics
+func Collector() {
+	var m []*MetaData
+
+	if !funcs.CheckAlive() {
+		log.Println("[ERROR]: Can not connect to rabbit.")
+		m = handleSickRabbit()
+	}
