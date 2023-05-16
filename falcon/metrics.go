@@ -247,4 +247,16 @@ func Collector() {
 	if !funcs.CheckAlive() {
 		log.Println("[ERROR]: Can not connect to rabbit.")
 		m = handleSickRabbit()
+	} else {
+		m = handleJudge()
 	}
+
+	log.Printf("[INFO]: send to %s, size: %d.", g.Config().Falcon.API, len(m))
+	// log for debug
+	if g.Config().Debug {
+		for _, m := range m {
+			log.Println(m.String())
+		}
+	}
+	sendDatas(m)
+}
