@@ -12,4 +12,13 @@ import (
 
 func sendData(data []*MetaData) (resp []byte, err error) {
 	debug := g.Config().Debug
-	js, err := json.Mars
+	js, err := json.Marshal(data)
+	if err != nil {
+		return
+	}
+
+	if debug {
+		log.Printf("agent api received %d metrics", len(data))
+	}
+
+	res, err := http.Post(g.Config().Falcon.API, "Content-Type: application/json", bytes.NewBuffer(js))
