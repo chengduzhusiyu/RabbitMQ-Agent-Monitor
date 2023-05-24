@@ -51,3 +51,51 @@ func getVHosts() (vl []string, err error) {
 		err = fmt.Errorf("[ERROR]: unmarshal rabbitmq vhost json data fail due to %s", err.Error())
 		return
 	}
+
+	vl = make([]string, len(vs))
+	for _, v := range vs {
+		vl = append(vl, urlEncode(v.Name))
+	}
+	return
+}
+
+// GetExchanges get all exchanges
+func GetExchanges() (exchs []*ExchangeInfo, err error) {
+	vhosts, err := getVHosts()
+	if err != nil {
+		return
+	}
+
+	exchs = make([]*ExchangeInfo, 0)
+	for _, v := range vhosts {
+		var (
+			es   []*ExchangeInfo
+			err1 error
+		)
+		service := fmt.Sprintf("exchanges/%s", v)
+		res, err1 := g.RabbitAPI(service)
+		if err1 != nil {
+			err = err1
+			return
+		}
+
+		err1 = json.Unmarshal(res, &es)
+		if err1 != nil {
+			err = err1
+			return
+		}
+
+		for _, e := range es {
+			if e.Name == "" {
+				e.Name = "DEFAULT_EXCHANGE"
+			}
+
+			if strings.Contains(e.Name, "amq.") {
+				continue
+			}
+			exchs = append(exchs, e)
+		}
+	}
+
+	return
+}
