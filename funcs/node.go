@@ -34,3 +34,54 @@ type NodeStats struct {
 	Rawait       float64  `json:"io_read_avg_time"`
 	Wawait       float64  `json:"io_write_avg_time"`
 	Syncawait    float64  `json:"io_sync_avg_time"`
+	MemUsed      int64    `json:"mem_used"`
+	MemLimit     int64    `json:"mem_limit"`
+	SocketsUsed  int64    `json:"sockets_used"`
+	SocketsTotal int64    `json:"sockets_total"`
+	FdUsed       int64    `json:"fd_used"`
+	FdTotal      int64    `json:"fd_total"`
+	ErlProcUsed  int64    `json:"proc_used"`
+	ErlProcTotal int64    `json:"proc_total"`
+	RunQueues    int64    `json:"run_queue"`
+	MemAlarm     bool     `json:"mem_alarm"`
+	DiskAlarm    bool     `json:"disk_free_alarm"`
+}
+
+// MemAlarmStatus memory alarm status
+func (n *NodeStats) MemAlarmStatus() int {
+	if n.MemAlarm {
+		return 0
+	}
+	return 1
+}
+
+// DiskAlarmStatus disc alarm status
+func (n *NodeStats) DiskAlarmStatus() int {
+	if n.DiskAlarm {
+		return 0
+	}
+	return 1
+}
+
+// GetNode ...
+func GetNode() (n *NodeStats, err error) {
+	host := g.GetHost()
+	if g.Config().Debug {
+		log.Printf("[INFO]: Get hostname %s.", host)
+	}
+
+	service := "nodes/rabbit@" + host + "?memory=true"
+	// service := "nodes/rabbit@" + "vm-test-barryz" + "?memory=true"
+	res, err := g.RabbitAPI(service)
+	if err != nil {
+		err = fmt.Errorf("[ERROR]: get rabbitmq node info fail due to %s", err.Error())
+		return
+	}
+
+	err = json.Unmarshal(res, &n)
+	if err != nil {
+		err = fmt.Errorf("[ERROR]: unmarshal rabbitmq node info json data fail due to %s", err.Error())
+		return
+	}
+	return
+}
