@@ -15,4 +15,12 @@ type QueueRate struct {
 
 // QueueMsgStat ...
 type QueueMsgStat struct {
-	Publish    QueueRate `json:"pu
+	Publish    QueueRate `json:"publish_details"`
+	DeliverGet QueueRate `json:"deliver_get_details"`
+	Ack        QueueRate `json:"ack_details"`
+	Redeliver  QueueRate `json:"redeliver_details"`
+}
+
+// QueueMap ...
+type QueueMap struct {
+	Memory        
