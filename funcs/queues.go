@@ -31,4 +31,11 @@ type QueueMap struct {
 	Consumers       int64       `json:"consumers"`
 	Status          string      `json:"state"`
 	Name            string      `json:"name"`
-	Vhost         
+	Vhost           string      `json:"vhost"`
+	AutoDelete      bool        `json:"auto_delete"`
+	QueueMsgStat    `json:"message_stats"`
+}
+
+func filterQueue(q *QueueMap) bool {
+	isIgnore := false
+	ignores := g.Config().Ignores
