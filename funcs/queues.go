@@ -55,4 +55,13 @@ func filterQueue(q *QueueMap) bool {
 	return false
 }
 
-// GetQueues 
+// GetQueues ...
+func GetQueues() (qm []*QueueMap, err error) {
+	var (
+		queues []*QueueMap
+	)
+
+	service := "queues"
+	res, err := g.RabbitAPI(service)
+	if err != nil {
+		err = fmt.Errorf("[ERROR]: get rabbitmq queue 
