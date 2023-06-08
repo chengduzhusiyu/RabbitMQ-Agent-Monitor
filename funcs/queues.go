@@ -39,3 +39,20 @@ type QueueMap struct {
 func filterQueue(q *QueueMap) bool {
 	isIgnore := false
 	ignores := g.Config().Ignores
+
+	for _, i := range ignores {
+		if strings.Contains(strings.ToLower(q.Name), i) {
+			isIgnore = true
+		} else {
+			continue
+		}
+	}
+
+	if isIgnore {
+		return true
+	}
+
+	return false
+}
+
+// GetQueues 
