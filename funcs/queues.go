@@ -72,3 +72,14 @@ func GetQueues() (qm []*QueueMap, err error) {
 	if err != nil {
 		err = fmt.Errorf("[ERROR]: unmarshal rabbitmq queue json data fail due to %s", err.Error())
 		return
+	}
+
+	qm = make([]*QueueMap, len(queues))
+	for _, q := range queues {
+		if !filterQueue(q) {
+			qm = append(qm, q)
+		}
+	}
+
+	return
+}
