@@ -5,4 +5,5 @@ import (
 )
 
 func urlEncode(str string) string {
-	return
+	return url.QueryEscape(str)
+}
