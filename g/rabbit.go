@@ -10,4 +10,11 @@ import (
 )
 
 // GetHost get hostname (syscall)
-func GetHost() 
+func GetHost() string {
+	return Config().Hostname
+}
+
+// GetAPIUrl return the RabbitMQ api url
+func GetAPIUrl(service string) string {
+	port := Config().Rabbit.Port
+	apiURL := fmt.Sprintf("http://%s:%s/api/%s", Config().Rabbit.Host, st
