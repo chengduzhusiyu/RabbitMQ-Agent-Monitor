@@ -40,4 +40,9 @@ func RabbitAPI(service string) ([]byte, error) {
 				return c, nil
 
 			},
-			Dis
+			DisableKeepAlives:     true, // disable http keepalive
+			ResponseHeaderTimeout: time.Second * time.Duration(respTimeout),
+		},
+	}
+	request, _ := http.NewRequest("GET", url, nil)
+	request.Hea
