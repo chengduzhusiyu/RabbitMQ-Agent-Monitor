@@ -54,4 +54,10 @@ func RabbitAPI(service string) ([]byte, error) {
 
 	defer response.Body.Close()
 
-	resultCode 
+	resultCode := response.StatusCode
+	switch resultCode {
+	case http.StatusOK:
+		body, _ := ioutil.ReadAll(response.Body)
+		return body, nil
+	case http.StatusUnauthorized:
+		return []byte(""), fmt.Errorf("call rabbitmq rest api auth fail"
