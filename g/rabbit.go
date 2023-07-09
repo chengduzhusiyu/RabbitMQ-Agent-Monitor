@@ -60,4 +60,8 @@ func RabbitAPI(service string) ([]byte, error) {
 		body, _ := ioutil.ReadAll(response.Body)
 		return body, nil
 	case http.StatusUnauthorized:
-		return []byte(""), fmt.Errorf("call rabbitmq rest api auth fail"
+		return []byte(""), fmt.Errorf("call rabbitmq rest api auth fail")
+	default:
+		return []byte(""), fmt.Errorf("unknown error %d", resultCode)
+	}
+}
