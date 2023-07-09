@@ -12,4 +12,11 @@ type StatsDB struct {
 	LastCollectTime string `json:"last_collect"`
 }
 
-// NewStatsDB cre
+// NewStatsDB create an new stats management database cache
+func NewStatsDB() *StatsDB {
+	return &StatsDB{}
+}
+
+// SetCurrentLocate setting current database location
+func (s *StatsDB) SetCurrentLocate(locate string) {
+	
