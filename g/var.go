@@ -27,4 +27,6 @@ func (s *StatsDB) SetCurrentLocate(locate string) {
 		// do nothing
 	}
 
-	s.LastCollectTime = utils.GetCur
+	s.LastCollectTime = utils.GetCurrentDateTime()
+
+}
