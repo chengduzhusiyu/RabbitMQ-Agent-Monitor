@@ -16,4 +16,10 @@ import (
 )
 
 var (
-	// ErrServerErr
+	// ErrServerError is internal server error.
+	ErrServerError = errors.New("Internal Server Error")
+	// ErrBadRequest is bad request error.
+	ErrBadRequest = errors.New("Bad Request")
+)
+
+func sysAction(control *system.SysController,
