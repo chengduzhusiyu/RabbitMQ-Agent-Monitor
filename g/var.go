@@ -19,4 +19,12 @@ func NewStatsDB() *StatsDB {
 
 // SetCurrentLocate setting current database location
 func (s *StatsDB) SetCurrentLocate(locate string) {
-	
+	if s.CurrentLocate != locate {
+		s.PreviousLocate = s.CurrentLocate
+		s.CurrentLocate = locate
+		s.LastChangeTime = utils.GetCurrentDateTime()
+	} else {
+		// do nothing
+	}
+
+	s.LastCollectTime = utils.GetCur
