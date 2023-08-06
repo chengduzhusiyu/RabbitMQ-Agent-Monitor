@@ -33,4 +33,13 @@ func sysAction(control *system.SysController, req *http.Request, r render.Render
 	action := &system.Action{}
 	if err := json.Unmarshal(bs, action); err != nil {
 		log.Printf("[WARN] Invalid action format: %s", err)
-		r.JSON(http.StatusBadReque
+		r.JSON(http.StatusBadRequest, ErrBadRequest)
+		return
+	}
+	r.JSON(http.StatusOK, control.Handle(action))
+}
+
+func statsAction(control *system.StatsController, req *http.Request, r render.Render) {
+	bs, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		
