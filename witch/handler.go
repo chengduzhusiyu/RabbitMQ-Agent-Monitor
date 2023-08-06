@@ -26,4 +26,11 @@ func sysAction(control *system.SysController, req *http.Request, r render.Render
 	bs, err := ioutil.ReadAll(req.Body)
 	if err != nil {
 		log.Printf("[ERROR] Read request body error: %s", err)
-		r.JSON(http.StatusInternalServerError, ErrServerE
+		r.JSON(http.StatusInternalServerError, ErrServerError)
+		return
+	}
+	log.Printf("[INFO] Request action: %s", bs)
+	action := &system.Action{}
+	if err := json.Unmarshal(bs, action); err != nil {
+		log.Printf("[WARN] Invalid action format: %s", err)
+		r.JSON(http.StatusBadReque
