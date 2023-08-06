@@ -22,4 +22,8 @@ var (
 	ErrBadRequest = errors.New("Bad Request")
 )
 
-func sysAction(control *system.SysController,
+func sysAction(control *system.SysController, req *http.Request, r render.Render) {
+	bs, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		log.Printf("[ERROR] Read request body error: %s", err)
+		r.JSON(http.StatusInternalServerError, ErrServerE
