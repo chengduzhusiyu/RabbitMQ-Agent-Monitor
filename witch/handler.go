@@ -53,4 +53,13 @@ func statsAction(control *system.StatsController, req *http.Request, r render.Re
 		r.JSON(http.StatusBadRequest, ErrBadRequest)
 		return
 	}
-	r.JSON(http.StatusOK,
+	r.JSON(http.StatusOK, control.Handle(action))
+
+}
+
+func procForceStop(req *http.Request, r render.Render) {
+	if req.Method != "GET" {
+		r.JSON(http.StatusMethodNotAllowed, ErrBadRequest)
+		return
+	}
+	proc := g.Config().Witch.P
