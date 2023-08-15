@@ -62,4 +62,12 @@ func procForceStop(req *http.Request, r render.Render) {
 		r.JSON(http.StatusMethodNotAllowed, ErrBadRequest)
 		return
 	}
-	proc := g.Config().Witch.P
+	proc := g.Config().Witch.Process
+	args := fmt.Sprintf("pgrep %s|xargs skill -9", proc)
+	_, err := system.ExecCommand("bash", []string{"-c", args})
+	if err != nil {
+		r.JSON(http.StatusServiceUnavailable, ErrServerError)
+		return
+	}
+
+	r.JSON(
