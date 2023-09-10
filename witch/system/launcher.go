@@ -17,4 +17,13 @@ type Launcher struct {
 	cmd     string
 }
 
-// New
+// NewLauncher creates new system.
+func NewLauncher(pidFile, cmd string) *Launcher {
+	return &Launcher{
+		pidFile: pidFile,
+		cmd:     cmd,
+	}
+}
+
+func (s *Launcher) writePid(pid int) {
+	if err := WriteFile(s.pidFile, 
