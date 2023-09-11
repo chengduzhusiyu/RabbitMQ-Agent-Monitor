@@ -26,4 +26,11 @@ func NewLauncher(pidFile, cmd string) *Launcher {
 }
 
 func (s *Launcher) writePid(pid int) {
-	if err := WriteFile(s.pidFile, 
+	if err := WriteFile(s.pidFile, []byte(strconv.FormatInt(int64(pid), 10)), 0644); err != nil {
+		log.Fatalf("Failed to write pid file: %s", err)
+	}
+}
+
+func (s *Launcher) readPid() (int, bool) {
+	f, err := ioutil.ReadFile(s.pidFile)
+	if err !
