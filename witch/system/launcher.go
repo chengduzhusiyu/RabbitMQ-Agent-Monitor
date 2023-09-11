@@ -33,4 +33,12 @@ func (s *Launcher) writePid(pid int) {
 
 func (s *Launcher) readPid() (int, bool) {
 	f, err := ioutil.ReadFile(s.pidFile)
-	if err !
+	if err != nil {
+		log.Printf("Error reading pid file[%s]: %s", s.pidFile, err)
+		return -1, false
+	}
+
+	pid, err := strconv.Atoi(string(f))
+	if err != nil {
+		log.Printf("Invalid pid value[%s]: %s", s.pidFile, err)
+		return -1
