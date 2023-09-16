@@ -41,4 +41,16 @@ func (s *Launcher) readPid() (int, bool) {
 	pid, err := strconv.Atoi(string(f))
 	if err != nil {
 		log.Printf("Invalid pid value[%s]: %s", s.pidFile, err)
-		return -1
+		return -1, false
+	}
+
+	return pid, true
+}
+
+func (s *Launcher) pidAlive(pid int) bool {
+	return syscall.Kill(pid, 0) == nil
+}
+
+// IsAlive check if the process alive.
+func (s *Launcher) IsAlive() (int, bool) {
+	pid,
