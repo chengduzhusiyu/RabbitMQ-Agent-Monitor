@@ -53,4 +53,14 @@ func (s *Launcher) pidAlive(pid int) bool {
 
 // IsAlive check if the process alive.
 func (s *Launcher) IsAlive() (int, bool) {
-	pid,
+	pid, ok := s.readPid()
+	if !ok || pid < 1 {
+		return pid, false
+	}
+	return pid, s.pidAlive(pid)
+}
+
+// Start starts the process.
+func (s *Launcher) Start() (bool, error) {
+	if pid, ok := s.IsAlive(); ok {
+		log.Pri
