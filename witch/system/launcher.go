@@ -63,4 +63,11 @@ func (s *Launcher) IsAlive() (int, bool) {
 // Start starts the process.
 func (s *Launcher) Start() (bool, error) {
 	if pid, ok := s.IsAlive(); ok {
-		log.Pri
+		log.Printf("The process is alive, pid: %d", pid)
+		return true, nil
+	}
+
+	log.Printf("Starting [%s]", s.cmd)
+	child := exec.Command("/bin/bash", []string{"-c", s.cmd}...)
+	child.Stdin = os.Stdin
+	chil
