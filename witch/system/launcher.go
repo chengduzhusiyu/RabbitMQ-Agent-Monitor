@@ -70,4 +70,12 @@ func (s *Launcher) Start() (bool, error) {
 	log.Printf("Starting [%s]", s.cmd)
 	child := exec.Command("/bin/bash", []string{"-c", s.cmd}...)
 	child.Stdin = os.Stdin
-	chil
+	child.Stdout = os.Stdout
+	child.Stderr = os.Stderr
+	if err := child.Start(); err != nil {
+		log.Printf("Failed to start: %s", err)
+		return false, err
+	}
+	s.writePid(child.Process.Pid)
+	go child.Wait()
+	retu
