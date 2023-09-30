@@ -89,4 +89,13 @@ func (s *Launcher) Restart() (bool, error) {
 
 // Stop stops the process.
 func (s *Launcher) Stop() bool {
-	pid, ok := s
+	pid, ok := s.IsAlive()
+	if !ok {
+		log.Printf("The process not alive")
+		return true
+	}
+	syscall.Kill(pid, syscall.SIGTERM)
+	stopped := make(chan bool)
+	go func() {
+		for s.pidAlive(pid) {
+			time.Sleep(time
