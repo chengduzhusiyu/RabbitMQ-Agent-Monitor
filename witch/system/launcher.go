@@ -78,4 +78,15 @@ func (s *Launcher) Start() (bool, error) {
 	}
 	s.writePid(child.Process.Pid)
 	go child.Wait()
-	retu
+	return true, nil
+}
+
+// Restart restart the process
+func (s *Launcher) Restart() (bool, error) {
+	s.Stop()
+	return s.Start()
+}
+
+// Stop stops the process.
+func (s *Launcher) Stop() bool {
+	pid, ok := s
