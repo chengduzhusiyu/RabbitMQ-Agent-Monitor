@@ -98,4 +98,12 @@ func (s *Launcher) Stop() bool {
 	stopped := make(chan bool)
 	go func() {
 		for s.pidAlive(pid) {
-			time.Sleep(time
+			time.Sleep(time.Second)
+		}
+		close(stopped)
+	}()
+	select {
+	case <-stopped:
+		log.Printf("[INFO] Stop the process success.")
+	case <-time.After(time.Duration(stopWaitSecs) * time.Second):
+		log.Printf("[INFO] Stop the 
