@@ -113,4 +113,9 @@ func (s *Launcher) Stop() bool {
 }
 
 // WriteFile tries to create parent directory before WriteFile.
-func WriteFile(filename stri
+func WriteFile(filename string, data []byte, perm os.FileMode) error {
+	if err := os.MkdirAll(path.Dir(filename), 0755); err != nil {
+		return err
+	}
+	return ioutil.WriteFile(filename, data, perm)
+}
