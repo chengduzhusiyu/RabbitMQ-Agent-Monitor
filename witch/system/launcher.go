@@ -106,4 +106,11 @@ func (s *Launcher) Stop() bool {
 	case <-stopped:
 		log.Printf("[INFO] Stop the process success.")
 	case <-time.After(time.Duration(stopWaitSecs) * time.Second):
-		log.Printf("[INFO] Stop the 
+		log.Printf("[INFO] Stop the process timeout, force to kill.")
+		syscall.Kill(pid, syscall.SIGKILL)
+	}
+	return true
+}
+
+// WriteFile tries to create parent directory before WriteFile.
+func WriteFile(filename stri
