@@ -19,4 +19,13 @@ func NewSupervisor(service string) *Supervisor {
 }
 
 // IsAlive gets results from `supervisorctl status [service]`
-func (s *Supervisor) IsAlive() 
+func (s *Supervisor) IsAlive() (int, bool) {
+	r, err := ExecCommand(s.name, []string{"status", s.service})
+	if err != nil {
+		return -1, false
+	}
+	return -1, strings.Contains(r, "RUNNING")
+}
+
+// Start executes `supervisorctl start [service]`
+func (s *Supe
