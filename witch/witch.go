@@ -11,4 +11,11 @@ import (
 )
 
 const (
-	comma
+	commandBuildIn    = "buildin"
+	commandSupervisor = "supervisor"
+	commandSystemd    = "systemd"
+)
+
+func handleSignals(exitFunc func()) {
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, os.Interrupt, syscall.SI
