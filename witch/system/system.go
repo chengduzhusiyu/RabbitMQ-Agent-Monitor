@@ -129,3 +129,9 @@ func ExecCommand(name string, args []string) (string, error) {
 	child.Stdout = &buf
 	child.Stderr = &buf
 	if err := child.Start(); err != nil {
+		log.Printf("[ERROR] Failed to start: %s", err)
+		return buf.String(), err
+	}
+	child.Wait()
+	return buf.String(), nil
+}
