@@ -27,4 +27,10 @@ func handleSignals(exitFunc func()) {
 func createSystem(cfg *g.GlobalConfig) system.System {
 	switch cfg.Witch.Control {
 	case commandBuildIn:
-		return s
+		return system.NewLauncher(cfg.Witch.PidFile, cfg.Witch.Command)
+	case commandSupervisor:
+		return system.NewSupervisor(cfg.Witch.Service)
+	case commandSystemd:
+		return system.NewSystemd(cfg.Witch.Service)
+	}
+	log.Fatalf("Invalid 
