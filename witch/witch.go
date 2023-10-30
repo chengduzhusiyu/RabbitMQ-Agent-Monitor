@@ -33,4 +33,16 @@ func createSystem(cfg *g.GlobalConfig) system.System {
 	case commandSystemd:
 		return system.NewSystemd(cfg.Witch.Service)
 	}
-	log.Fatalf("Invalid 
+	log.Fatalf("Invalid control '%s'", cfg.Witch.Control)
+	return nil
+}
+
+func createStats() system.Stats {
+	return system.NewStatsDBCtl()
+}
+
+// Launch launch witch service
+func Launch() {
+	cfg := g.Config()
+	stats := createStats()
+	sys :=
