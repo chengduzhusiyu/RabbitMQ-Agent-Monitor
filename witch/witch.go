@@ -45,4 +45,10 @@ func createStats() system.Stats {
 func Launch() {
 	cfg := g.Config()
 	stats := createStats()
-	sys :=
+	sys := createSystem(cfg)
+	sys.Start()
+
+	srv := NewServer(cfg.Witch.ListenAddr, &system.SysController{System: sys}, &system.StatsController{Stats: stats}, cfg)
+	go func() {
+		if err := srv.Start(); err != nil {
+			log.F
