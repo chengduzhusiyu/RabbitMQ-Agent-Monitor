@@ -51,4 +51,11 @@ func Launch() {
 	srv := NewServer(cfg.Witch.ListenAddr, &system.SysController{System: sys}, &system.StatsController{Stats: stats}, cfg)
 	go func() {
 		if err := srv.Start(); err != nil {
-			log.F
+			log.Fatalf("[FATAL] Start system server failed: %v", err)
+		}
+	}()
+
+	handleSignals(func() {
+		sys.Stop()
+	})
+}
