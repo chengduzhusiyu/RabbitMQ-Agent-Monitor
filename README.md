@@ -8,3 +8,21 @@
 RabbitMQ-Agent-Monitor is an agent that used for [open-falcon](http://open-falcon.org/) to monitoring [RabbitMQ](https://www.rabbitmq.com/).
 
 ## Arch Requirement
+Linux
+
+## Build
+
+```bash
+$make build
+```
+
+## Agent launch
+
+```bash
+$/bin/bash control.sh start|stop|restart
+```
+It will create a temporary directory `var` in your current path.
+
+## Metrics
+
+***overview metrics*
