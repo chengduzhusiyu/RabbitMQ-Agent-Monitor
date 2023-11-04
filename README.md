@@ -25,4 +25,10 @@ It will create a temporary directory `var` in your current path.
 
 ## Metrics
 
-***overview metrics*
+***overview metrics***:
+... <rest of metrics tables> ... 
+
+## Witch
+spiderQ will starting a web server to handle several instructions which to control RabbitMQ process state.
+
+The web server listening on port 5671 by d
