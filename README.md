@@ -31,4 +31,11 @@ It will create a temporary directory `var` in your current path.
 ## Witch
 spiderQ will starting a web server to handle several instructions which to control RabbitMQ process state.
 
-The web server listening on port 5671 by d
+The web server listening on port 5671 by default, it enable basicauth, and handle client's requests.
+
+***RabbitMQ process management(graceful)***
+
+```bash
+curl -u noadmin:ADMIN -XPUT -d '{"name":"is_alive"}' http://127.0.0.1:5671/api/app/actions
+
+curl -u
