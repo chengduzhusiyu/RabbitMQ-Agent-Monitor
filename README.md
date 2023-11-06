@@ -38,4 +38,8 @@ The web server listening on port 5671 by default, it enable basicauth, and handl
 ```bash
 curl -u noadmin:ADMIN -XPUT -d '{"name":"is_alive"}' http://127.0.0.1:5671/api/app/actions
 
-curl -u
+curl -u noadmin:ADMIN -XPUT -d '{"name":"start"}' http://127.0.0.1:5671/api/app/actions
+
+curl -u noadmin:ADMIN -XPUT -d '{"name":"stop"}' http://127.0.0.1:5671/api/app/actions
+
+curl -u noadmin:ADMIN -XPUT -d '{"name
