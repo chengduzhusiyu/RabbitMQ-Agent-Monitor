@@ -51,4 +51,13 @@ curl -u noadmin:ADMIN -XPUT -d '{"name":"restart"}' http://127.0.0.1:5671/api/ap
 curl -u noadmin:ADMIN -XGET http://127.0.0.1:5671/api/app/fstop
 ```
 
-***Get the healthy status of single Rabb
+***Get the healthy status of single RabbitMQ node***
+
+```bash
+curl -u noadmin:ADMIN -XGET http://127.0.0.1:5671/api/stats
+```
+
+***Start/Stop/Restart RabbitMQ statistics management database***
+
+```bash
+curl -u noadmin:ADMIN -XPUT -d '{"name":"reset"}' http://
