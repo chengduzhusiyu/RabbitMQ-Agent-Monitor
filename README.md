@@ -60,4 +60,9 @@ curl -u noadmin:ADMIN -XGET http://127.0.0.1:5671/api/stats
 ***Start/Stop/Restart RabbitMQ statistics management database***
 
 ```bash
-curl -u noadmin:ADMIN -XPUT -d '{"name":"reset"}' http://
+curl -u noadmin:ADMIN -XPUT -d '{"name":"reset"}' http://127.0.0.1:5671/api/stats/actions
+
+curl -u noadmin:ADMIN -XPUT -d '{"name":"crash"}' http://127.0.0.1:5671/api/stats/actions
+
+curl -u noadmin:ADMIN -XPUT -d '{"name":"terminate"}' http://127.0.0.1:5671/api/stats/actions
+```
